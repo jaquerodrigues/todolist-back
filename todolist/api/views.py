@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
+from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from todolist.api.serializers import TaskSerializer
@@ -28,6 +27,16 @@ class TaskViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class ListTodo(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+
+class DetailTodo(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
 
 
 

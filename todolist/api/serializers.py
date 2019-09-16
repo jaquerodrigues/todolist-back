@@ -7,3 +7,4 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ('id','tarefa')
 
+
